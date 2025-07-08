@@ -44,7 +44,7 @@ CR пользователя из активности по математике 
 Производим расчеты CR активных студентов и CR активных студентов по математике с учетом пустых значений (NULLIF).  
 
 '''SELECT s.test_grp AS test_grp,  
-       AVG(COALESCE(fpc.money, 0)) AS arpu,  
+          AVG(COALESCE(fpc.money, 0)) AS arpu,  
 AVG(CASE WHEN COALESCE(p.total_correct, 0) > 10 THEN COALESCE(fpc.money, 0) END) AS arpau,  
 100.0 * AVG(CASE WHEN fpc.money > 0 THEN 1 ELSE 0 END) AS cr_purchase,  
 100.0 * AVG(CASE WHEN COALESCE(p.total_correct, 0) > 10 AND fpc.money > 0 THEN 1 ELSE 0 END) / NULLIF(AVG(CASE WHEN COALESCE(p.total_correct, 0) > 10 THEN 1 ELSE 0 END), 0) AS cr_active,  
