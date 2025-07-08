@@ -43,6 +43,8 @@ CR пользователя из активности по математике 
 Производим расчеты ARPU, ARPAU и CR в покупку.  
 Производим расчеты CR активных студентов и CR активных студентов по математике с учетом пустых значений (NULLIF).  
 
+---
+
 '''SELECT s.test_grp AS test_grp,  
           AVG(COALESCE(fpc.money, 0)) AS arpu,  
 AVG(CASE WHEN COALESCE(p.total_correct, 0) > 10 THEN COALESCE(fpc.money, 0) END) AS arpau,  
@@ -55,3 +57,4 @@ LEFT JOIN (SELECT st_id, COUNT() AS total_correct FROM peas WHERE correct = true
 LEFT JOIN (SELECT st_id, COUNT() AS math_correct FROM peas WHERE correct = true AND subject = 'Math' GROUP BY st_id) m ON s.st_id = m.st_id  
 GROUP BY s.test_grp
 '''  
+---
